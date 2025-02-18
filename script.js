@@ -1,29 +1,22 @@
 function calculateScore() {
+    // Get input values
     let ksqInput = document.getElementById("ksq").value;
     let bsqInput = document.getElementById("bsq").value;
-    
-    let ksqScores = ksqInput.split(",").map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
-    
-    if (ksqScores.length === 0) {
-        document.getElementById("result").innerText = "Xahiş edirik KSQ qiymətlərini düzgün daxil edin";
-        document.getElementById("result").style.color = "red";
-        return;
-    }
 
-    let ksqAverage = ksqScores.reduce((a, b) => a + b, 0) / ksqScores.length;
+    // Convert KSQ values into an array of numbers
+    let ksqValues = ksqInput.split(",").map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+
+    // Calculate KSQ Average
+    let ksqSum = ksqValues.reduce((sum, num) => sum + num, 0);
+    let ksqAverage = ksqValues.length > 0 ? ksqSum / ksqValues.length : 0;
+
+    // Convert BSQ to number
+    let bsqScore = parseFloat(bsqInput);
+    if (isNaN(bsqScore)) bsqScore = 0; // Default to 0 if empty
+
+    // Calculate final score (KSQ 40% + BSQ 60%)
+    let finalScore = (ksqAverage * 0.4) + (bsqScore * 0.6);
     
-    if (bsqInput) {
-        let bsqScore = parseFloat(bsqInput);
-        if (isNaN(bsqScore)) {
-            document.getElementById("result").innerText = "Xahiş edirik BSQ qiymətini düzgün daxil edin";
-            document.getElementById("result").style.color = "red";
-            return;
-        }
-        let finalScore = (ksqAverage * 0.6) + (bsqScore * 0.4);
-        document.getElementById("result").innerText = finalScore.toFixed(2);
-        document.getElementById("result").style.color = "#4caf50";  // Green for valid result
-    } else {
-        document.getElementById("result").innerText = ksqAverage.toFixed(2);
-        document.getElementById("result").style.color = "#4caf50";  // Green for valid result
-    }
+    // Display the result
+    document.getElementById("result").innerText = finalScore.toFixed(2);
 }
