@@ -9,15 +9,19 @@
 <body>
     <div class="container">
         <h1>📚 Akademik Qiymət Hesablama</h1>
-        
+
+        <!-- Input for KQS Scores -->
         <label for="ksq"><strong>📊 KQS Qiymətlərini daxil edin (vergüllə ayırın):</strong></label>
-        <input type="text" id="ksq" placeholder="Məs: 85, 90, 78">
+        <input type="text" id="ksq" placeholder="Məs: 85, 90, 78" class="input-field">
 
+        <!-- Input for BSQ Score -->
         <label for="bsq"><strong>📝 BSQ Qiyməti (əgər varsa):</strong></label>
-        <input type="number" id="bsq" placeholder="Məs: 92">
+        <input type="number" id="bsq" placeholder="Məs: 92" class="input-field">
 
-        <button onclick="calculateScore()">🚀 Hesabla</button>
-        
+        <!-- Calculate Button -->
+        <button onclick="calculateScore()" class="calculate-btn">🚀 Hesabla</button>
+
+        <!-- Display the Result -->
         <h2>✅ Nəticə: <span id="result">-</span></h2>
     </div>
 
