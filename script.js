@@ -6,17 +6,20 @@ function calculateScore() {
     // Convert KSQ values into an array of numbers
     let ksqValues = ksqInput.split(",").map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
 
-    // Calculate KSQ Average
-    let ksqSum = ksqValues.reduce((sum, num) => sum + num, 0);
-    let ksqAverage = ksqValues.length > 0 ? ksqSum / ksqValues.length : 0;
+    // Ensure there are valid KQS values
+    let ksqAverage = 0;
+    if (ksqValues.length > 0) {
+        let ksqSum = ksqValues.reduce((sum, num) => sum + num, 0);
+        ksqAverage = ksqSum / ksqValues.length;
+    }
 
-    // Convert BSQ to number
+    // Convert BSQ to number (default to 0 if empty)
     let bsqScore = parseFloat(bsqInput);
-    if (isNaN(bsqScore)) bsqScore = 0; // Default to 0 if empty
+    if (isNaN(bsqScore)) bsqScore = 0;
 
-    // Calculate final score (KSQ 40% + BSQ 60%)
+    // Calculate final score: KSQ 40% + BSQ 60%
     let finalScore = (ksqAverage * 0.4) + (bsqScore * 0.6);
-    
+
     // Display the result
     document.getElementById("result").innerText = finalScore.toFixed(2);
 }
