@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akademik Qiymət Hesablama</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Akademik Qiymət Hesablama</h1>
+        
+        <label for="ksq">KSQ Qiymətlərini daxil edin (vergüllə ayırın):</label>
+        <input type="text" id="ksq" placeholder="Məs: 85, 90, 78">
+
+        <label for="bsq">BSQ Qiyməti (əgər varsa):</label>
+        <input type="number" id="bsq" placeholder="Məs: 92">
+
+        <button onclick="calculateScore()">Hesabla</button>
+        
+        <h2>Nəticə: <span id="result">-</span></h2>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
