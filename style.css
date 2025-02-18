@@ -58,8 +58,10 @@ h1 {
     font-size: 16px;
     outline: none;
     transition: all 0.3s ease-in-out;
+    box-sizing: border-box; /* Ensures padding does not make the element overflow */
 }
 
+/* Ensure inputs fit inside the container */
 .input-field:focus {
     border-color: #D96459;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
