@@ -17,11 +17,11 @@ function calculateScore() {
     let bsqScore = parseFloat(bsqInput);
     if (isNaN(bsqScore)) bsqScore = 0;
 
-    // **Correct Calculation: KSQ 40% + BSQ 60%**
+    // Calculate the final score
     let finalScore = (ksqAverage * 0.4) + (bsqScore * 0.6);
 
-    // **Fix Decimal Rounding Issue**
-    finalScore = Math.round(finalScore * 10) / 10; // Keeps one decimal place
+    // Round to one decimal place
+    finalScore = Math.round(finalScore * 10) / 10;
 
     // Display the result
     document.getElementById("result").innerText = finalScore.toFixed(1);
