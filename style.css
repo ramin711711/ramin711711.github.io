@@ -18,7 +18,7 @@ body {
     margin: 50px auto;
     color: black;
     animation: fadeIn 1s ease-in-out;
-    border: 8px solid black; /* Thick bold black border */
+    border: 2px solid black; /* Thick bold black border */
 }
 /* Input & Button Styling */
 input, button {
