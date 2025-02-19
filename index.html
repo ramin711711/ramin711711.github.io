@@ -5,24 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akademik Qiymət Hesablama</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>📚 Akademik Qiymət Hesablama</h1>
+        <h1 class="fade-in">📚 Akademik Qiymət Hesablama</h1>
 
-        <!-- Input for KQS Scores -->
         <label for="ksq"><strong>📊 KQS Qiymətlərini daxil edin (vergüllə ayırın):</strong></label>
         <input type="text" id="ksq" placeholder="Məs: 85, 90, 78" class="input-field">
 
-        <!-- Input for BSQ Score -->
         <label for="bsq"><strong>📝 BSQ Qiyməti (əgər varsa):</strong></label>
         <input type="number" id="bsq" placeholder="Məs: 92" class="input-field">
 
-        <!-- Calculate Button -->
-        <button onclick="calculateScore()" class="calculate-btn">🚀 Hesabla</button>
+        <button onclick="calculateScore()" class="calculate-btn pulse">🚀 Hesabla</button>
 
-        <!-- Display the Result -->
-        <h2>✅ Nəticə: <span id="result">-</span></h2>
+        <h2 class="result-box">✅ Nəticə: <span id="result">-</span></h2>
     </div>
 
     <script src="script.js"></script>
