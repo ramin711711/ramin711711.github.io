@@ -20,9 +20,9 @@ function calculateScore() {
     // Calculate the final score
     let finalScore = (ksqAverage * 0.4) + (bsqScore * 0.6);
 
-    // Round to one decimal place
-    finalScore = Math.round(finalScore * 10) / 10;
+    // Limit to max 3 decimal places without unnecessary zeros
+    finalScore = parseFloat(finalScore.toFixed(3));
 
     // Display the result
-    document.getElementById("result").innerText = finalScore.toFixed(1);
+    document.getElementById("result").innerText = finalScore;
 }
