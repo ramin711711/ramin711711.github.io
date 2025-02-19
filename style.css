@@ -46,15 +46,22 @@ button:hover {
     border-color: black; /* Keeps the black border on hover */
 }
 
-/* Result Section */
 h2 {
-    font-size: 20px;
-    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    color: black; /* Text color changed to black */
     display: inline-block;
     padding: 10px;
     border: 4px solid black; /* Thick black border around "Nəticə" */
     border-radius: 5px;
-    background: rgba(0, 0, 0, 0.1); /* Light background to make it stand out */
+    background: rgba(0, 0, 0, 0.1); /* Light background */
+}
+
+/* Style for the number inside result */
+#result {
+    font-weight: bold; /* Bold number */
+    font-size: 24px; /* Slightly larger font */
+    color: black; /* Ensure the result number is black */
 }
 
 /* Label Styles */
