@@ -30,73 +30,133 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akademik Qiymət Hesablama</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akademik Qiymət Hesablama</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <style>
+    /* Extra styles just for the calculator */
+    .horizontal-calculator {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .horizontal-calculator input {
+      width: 100%;
+      height: 50px;
+      font-size: 24px;
+      text-align: right;
+      margin-bottom: 15px;
+    }
+
+    .horizontal-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .horizontal-buttons button {
+      width: 60px;
+      height: 60px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="fade-in">📚 Akademik Qiymət Hesablama</h1>
+  <!-- Your Original Calculator -->
+  <div class="container">
+    <h1 class="fade-in">📚 Akademik Qiymət Hesablama</h1>
 
-        <label for="ksq"><strong>📊 KQS Qiymətlərini daxil edin (vergüllə ayırın):</strong></label>
-        <input type="text" id="ksq" placeholder="Məs: 85, 90, 78" class="input-field">
+    <label for="ksq"><strong>📊 KQS Qiymətlərini daxil edin (vergüllə ayırın):</strong></label>
+    <input type="text" id="ksq" placeholder="Məs: 85, 90, 78" class="input-field">
 
-        <label for="bsq"><strong>📝 BSQ Qiyməti (əgər varsa):</strong></label>
-        <input type="number" id="bsq" placeholder="Məs: 92" class="input-field">
+    <label for="bsq"><strong>📝 BSQ Qiyməti (əgər varsa):</strong></label>
+    <input type="number" id="bsq" placeholder="Məs: 92" class="input-field">
 
-        <button onclick="calculateScore()" class="calculate-btn pulse">🚀 Hesabla</button>
+    <button onclick="calculateScore()" class="calculate-btn pulse">🚀 Hesabla</button>
 
-        <h2 class="result-box">✅ Nəticə: <span id="result">-</span></h2>
+    <h2 class="result-box">✅ Nəticə: <span id="result">-</span></h2>
+  </div>
+
+  <script src="script.js"></script>
+
+  <!-- Horizontal Calculator -->
+  <div class="horizontal-calculator">
+    <h2>🧮 Kalkulyator</h2>
+    <input type="text" id="resultCalc" disabled>
+    <div class="horizontal-buttons">
+      <button onclick="appendCalc('7')">7</button>
+      <button onclick="appendCalc('8')">8</button>
+      <button onclick="appendCalc('9')">9</button>
+      <button onclick="appendCalc('/')">/</button>
+
+      <button onclick="appendCalc('4')">4</button>
+      <button onclick="appendCalc('5')">5</button>
+      <button onclick="appendCalc('6')">6</button>
+      <button onclick="appendCalc('*')">*</button>
+
+      <button onclick="appendCalc('1')">1</button>
+      <button onclick="appendCalc('2')">2</button>
+      <button onclick="appendCalc('3')">3</button>
+      <button onclick="appendCalc('-')">-</button>
+
+      <button onclick="appendCalc('0')">0</button>
+      <button onclick="appendCalc('.')">.</button>
+      <button onclick="calculateCalc()">=</button>
+      <button onclick="appendCalc('+')">+</button>
+
+      <button onclick="deleteCalc()">⌫</button>
+      <button onclick="clearCalc()">C</button>
     </div>
+  </div>
 
-    <script src="script.js"></script>
+  <script>
+    // Basic Calculator Functions
+    function appendCalc(val) {
+      document.getElementById('resultCalc').value += val;
+    }
 
-    <!-- New Calculator Appended Below -->
-    <div style="max-width: 320px; margin: 50px auto; padding: 20px; background: #fff; border-radius: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.1); text-align: center;">
-        <h2>🧮 Kalkulyator</h2>
-        <input type="text" id="resultCalc" style="width: 100%; height: 50px; font-size: 24px; text-align: right; margin-bottom: 15px;" disabled>
-        <div>
-            <button onclick="clearCalc()">C</button>
-            <button onclick="appendCalc('/')">/</button>
-            <button onclick="appendCalc('*')">*</button>
-            <button onclick="deleteCalc()">⌫</button><br>
-            <button onclick="appendCalc('7')">7</button>
-            <button onclick="appendCalc('8')">8</button>
-            <button onclick="appendCalc('9')">9</button>
-            <button onclick="appendCalc('-')">-</button><br>
-            <button onclick="appendCalc('4')">4</button>
-            <button onclick="appendCalc('5')">5</button>
-            <button onclick="appendCalc('6')">6</button>
-            <button onclick="appendCalc('+')">+</button><br>
-            <button onclick="appendCalc('1')">1</button>
-            <button onclick="appendCalc('2')">2</button>
-            <button onclick="appendCalc('3')">3</button>
-            <button onclick="calculateCalc()">=</button><br>
-            <button onclick="appendCalc('0')">0</button>
-            <button onclick="appendCalc('.')">.</button>
-        </div>
-    </div>
+    function clearCalc() {
+      document.getElementById('resultCalc').value = '';
+    }
 
-    <script>
-        function appendCalc(val) {
-            document.getElementById('resultCalc').value += val;
-        }
-        function clearCalc() {
-            document.getElementById('resultCalc').value = '';
-        }
-        function deleteCalc() {
-            let current = document.getElementById('resultCalc').value;
-            document.getElementById('resultCalc').value = current.slice(0, -1);
-        }
-        function calculateCalc() {
-            try {
-                document.getElementById('resultCalc').value = eval(document.getElementById('resultCalc').value);
-            } catch {
-                document.getElementById('resultCalc').value = 'Error';
-            }
-        }
-    </script>
+    function deleteCalc() {
+      let current = document.getElementById('resultCalc').value;
+      document.getElementById('resultCalc').value = current.slice(0, -1);
+    }
+
+    function calculateCalc() {
+      try {
+        let result = eval(document.getElementById('resultCalc').value);
+        document.getElementById('resultCalc').value = result;
+      } catch {
+        document.getElementById('resultCalc').value = 'Error';
+      }
+    }
+
+    // Keyboard Support
+    document.addEventListener('keydown', function (event) {
+      const key = event.key;
+      const allowed = '0123456789+-*/.';
+
+      if (allowed.includes(key)) {
+        appendCalc(key);
+      } else if (key === 'Enter') {
+        calculateCalc();
+      } else if (key === 'Backspace') {
+        deleteCalc();
+      } else if (key === 'Escape') {
+        clearCalc();
+      }
+    });
+  </script>
 </body>
 </html>
