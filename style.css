@@ -1,96 +1,152 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to right, #007bff, #6610f2); /* Kept as it was */
-    color: white;
+/* ====== Theme Variables ====== */
+:root{
+  --bg: linear-gradient(to right, #007bff, #6610f2);
+  --card: #ffffff;
+  --text: #111;
+  --muted: #555;
+  --primary: #0d6efd;
+  --primary-contrast: #fff;
+  --border: #000;
+  --glass: rgba(255,255,255,0.08);
+}
+:root.dark{
+  --bg: linear-gradient(to right, #141e30, #243b55);
+  --card: #1f2a3a;
+  --text: #f1f5f9;
+  --muted: #cbd5e1;
+  --primary: #60a5fa;
+  --primary-contrast: #0b1220;
+  --border: #fff;
+  --glass: rgba(255,255,255,0.06);
 }
 
-/* Main Container */
-.container {
-    max-width: 400px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    margin: 50px auto;
-    color: black;
-    animation: fadeIn 1s ease-in-out;
-    border: 4px solid black; /* Thick bold black border */
+/* ====== Base ====== */
+html, body {
+  margin:0; padding:0;
+  font-family: Arial, sans-serif;
+  min-height:100%;
 }
-/* Input & Button Styling */
-input, button {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 3px solid black;  /* Bold black border */
-    border-radius: 5px;
-    font-size: 16px;
-    box-sizing: border-box; /* Ensures text fits inside the input field */
+body{
+  color: #fff;
+  background: var(--bg);
+  background-attachment: fixed;
 }
 
-/* Button Styles */
-button {
-    background: #007bff;
-    color: white;
-    border: 4px solid black; /* Thick black border */
-    font-weight: bold; /* Bold text */
-    cursor: pointer;
-    transition: 0.3s;
+/* ====== Topbar ====== */
+.topbar{
+  display:flex; justify-content:space-between; align-items:center;
+  padding: 12px 16px; color:#fff;
+}
+.brand{display:flex; align-items:center; gap:10px;}
+.brand .logo{font-size:28px}
+.brand h1{font-size:20px; margin:0}
+.badge{
+  background: rgba(0,0,0,0.25);
+  border:2px solid #000; padding:4px 8px; border-radius:8px; font-weight:bold; color:#fff;
 }
 
-button:hover {
-    background: #0056b3;
-    border-color: black; /* Keeps the black border on hover */
+/* ====== Controls ====== */
+.controls{display:flex; align-items:center; gap:12px;}
+.chip{
+  border:2px solid var(--border);
+  background: var(--glass);
+  color:#fff; padding:6px 10px; border-radius:999px; cursor:pointer;
+}
+.chip:active{transform:scale(.98)}
+.switch{position:relative; display:inline-block; width:48px; height:28px}
+.switch input{display:none}
+.slider{
+  position:absolute; inset:0; background:#999; border-radius:999px; cursor:pointer;
+}
+.slider:before{
+  content:""; position:absolute; height:22px; width:22px; left:3px; top:3px; background:#fff; border-radius:50%; transition:.2s;
+}
+.switch input:checked + .slider{background:#333}
+.switch input:checked + .slider:before{transform:translateX(20px)}
+
+/* ====== Translate widget (subtle) ====== */
+.translate-widget{max-width:980px; margin:0 auto 8px; text-align:right; opacity:.6}
+
+/* ====== Main layout ====== */
+.container{
+  max-width: 980px; margin: 12px auto 40px; padding: 0 12px;
+}
+.card{
+  background: var(--card);
+  color: var(--text);
+  border: 4px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.15);
+  padding: 18px;
+  margin: 16px 0;
+  animation: fadeIn .6s ease;
 }
 
-/* Result Section */
-h2 {
-    font-size: 22px;
-    font-weight: bold;
-    color: black; /* Text color changed to black */
-    display: inline-block;
-    padding: 10px;
-    border: 4px solid black; /* Thick black border around "Nəticə" */
-    border-radius: 5px;
-    background: rgba(0, 0, 0, 0.1); /* Light background */
-    margin: 0; /* Ensure no extra margin */
+/* ====== Inputs & buttons ====== */
+label{font-weight:bold; display:block; margin:8px 0 6px}
+.input-field, select, input[type="date"]{
+  width:100%; padding:10px; font-size:16px; border-radius:8px;
+  border:3px solid var(--border); box-sizing:border-box; background:#fff; color:#000;
+}
+.actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+button{
+  border-radius:8px; padding:10px 14px; font-size:15px; font-weight:bold; cursor:pointer; border:3px solid var(--border);
+  transition: transform .05s ease, filter .15s ease; user-select:none;
+}
+button:active{ transform: scale(.98) }
+.primary{ background: var(--primary); color: var(--primary-contrast) }
+.secondary{ background:#2b2727; color:#fff }
+.ghost{ background:transparent; color:var(--text); border-style:dashed }
+
+/* ====== Result ====== */
+.result-box{
+  font-size:20px; font-weight:bold; color: var(--text); display:inline-block; padding:8px; margin:0;
+  border:4px solid var(--border); border-radius:8px; background: rgba(0,0,0,0.06);
+}
+#result{
+  font-weight:bold; font-size:26px; color: var(--text);
+  border:4px solid var(--border); padding:4px 10px; border-radius:8px; margin-left:10px; background: rgba(0,0,0,0.06);
+}
+.converted{margin-top:8px; font-size:14px; color:var(--muted)}
+.result-line{display:flex; flex-direction:column; gap:6px}
+
+/* ====== Row & weights ====== */
+.row{display:grid; grid-template-columns: 1fr; gap:12px}
+.scheme{display:flex; flex-direction:column; gap:6px}
+.weights{display:flex; flex-direction:column; gap:6px}
+.hidden{display:none}
+#weight-note{color:var(--muted)}
+
+/* ====== Tips ====== */
+.tips{margin-top:10px; background: rgba(0,0,0,0.06); border-left:6px solid var(--primary); padding:10px; border-radius:8px}
+
+/* ====== Chart ====== */
+canvas{background:#fff; border-radius:8px; border:2px solid var(--border)}
+
+/* ====== Calculator ====== */
+.horizontal-buttons{
+  display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; margin-top:10px;
+}
+.horizontal-buttons button{
+  height:60px; font-size:18px; border-radius:8px; border:2px solid var(--border); background:#2b2727; color:#fff;
+}
+.horizontal-buttons button.equal{ background:#4caf50 }
+.horizontal-buttons button.zero{ grid-column: span 2 }
+#resultCalc{
+  width:100%; height:60px; font-size:24px; text-align:right; margin-bottom:10px; border-radius:8px; padding-right:10px;
+  border:3px solid var(--border); background:#fff; color:#000;
 }
 
-/* Style for the number inside result */
-#result {
-    font-weight: bold; /* Bold number */
-    font-size: 24px; /* Slightly larger font */
-    color: black; /* Ensure the result number is black */
-    border: 4px solid black; /* Thick black border around the result */
-    padding: 5px 10px; /* Add padding for better spacing */
-    border-radius: 5px; /* Rounded corners */
-    display: inline-block; /* Ensure it aligns properly */
-    margin-left: 10px; /* Add spacing between "Nəticə" and the result */
-    background: rgba(0, 0, 0, 0.1); /* Light background */
+/* ====== Footer ====== */
+.footer{color:#fff; text-align:center; padding:18px 0}
 
-/* Label Styles */
-label {
-    font-weight: bold;
+/* ====== Anim ====== */
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(-6px)}
+  to{opacity:1; transform:translateY(0)}
 }
 
-/* Header Styles */
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-/* Animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Mobile-Friendly */
-@media (max-width: 500px) {
-    .container {
-        width: 90%;
-    }
+/* ====== Mobile ====== */
+@media (max-width: 720px){
+  .row{grid-template-columns: 1fr}
 }
