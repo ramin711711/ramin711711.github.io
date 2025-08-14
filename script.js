@@ -24,6 +24,9 @@ const I18N = {
     btnCalc: "Hesabla",
     btnSave: "Yadda saxla",
     btnClear: "Tarixi sil",
+    btnPDF: "📄 PDF Yüklə",
+    btnCSV: "🧾 CSV Yüklə",
+    btnShare: "🔗 Paylaş",
     history: "📈 Nəticə tarixi",
     exam: "⏳ İmtahana geri sayım",
     azBadge: "🇦🇿 40/60",
@@ -50,6 +53,9 @@ const I18N = {
     btnCalc: "Calculate",
     btnSave: "Save",
     btnClear: "Clear History",
+    btnPDF: "📄 Download PDF",
+    btnCSV: "🧾 Download CSV",
+    btnShare: "🔗 Share",
     history: "📈 Score history",
     exam: "⏳ Exam countdown",
     azBadge: "🇦🇿 40/60",
@@ -112,6 +118,12 @@ function applyLang(lang) {
   $('#exam-title').textContent = t.exam;
   $('#az-badge').textContent = t.azBadge;
   $('#weight-note').textContent = t.weightNote;
+  $('#btn-calc').textContent = t.btnCalc;
+  $('#btn-save').textContent = t.btnSave;
+  $('#btn-clear').textContent = t.btnClear;
+  $('#btn-pdf').textContent = t.btnPDF;
+  $('#btn-csv').textContent = t.btnCSV;
+  $('#btn-share').textContent = t.btnShare;
   localStorage.setItem('lang', lang);
 }
 $$('.chip[data-lang]').forEach(btn => {
