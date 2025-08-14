@@ -412,7 +412,7 @@ if (btnPDF) {
       doc.text(t.pdfTitle, 40, 40);
 
       const node = document.querySelector('main.container');
-      const canvas = await html2canvas(node, { scale: 2 });
+      const canvas = await html2canvas(node, { scale: 4 });
       const imgData = canvas.toDataURL('image/png');
       const pageWidth = doc.internal.pageSize.getWidth();
       const imgWidth = pageWidth - 80;
