@@ -6,18 +6,17 @@
   <title>Academic Grade Calculator</title>
   <link rel="stylesheet" href="style.css" />
 
-  <!-- External libs -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" defer></script>
 
-  <!-- PWA -->
+
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#0d6efd" />
   <script>
-    // Register service worker
+    
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js').catch(console.warn);
@@ -26,7 +25,7 @@
   </script>
 </head>
 <body>
-  <!-- Header + Language + Dark Mode -->
+ 
   <header class="topbar">
     <div class="brand">
       <span class="logo">📚</span>
@@ -46,7 +45,7 @@
     </div>
   </header>
 
-  <!-- Translate (kept, but tucked) -->
+ 
   <div id="google_translate_element" class="translate-widget" aria-hidden="true"></div>
   <script>
     function googleTranslateElementInit() {
@@ -58,7 +57,7 @@
   </script>
   <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-  <!-- Main Container -->
+ 
   <main class="container">
     <section class="card">
       <h2 id="calc-title">📊 KQS və BSQ daxil edin</h2>
@@ -69,7 +68,7 @@
       <label for="bsq" id="label-bsq"><strong>📝 BSQ qiyməti (əgər varsa):</strong></label>
       <input type="number" id="bsq" placeholder="Məs: 92" class="input-field" />
 
-      <!-- Scheme Row -->
+     
       <div class="row">
         <div class="scheme">
           <label id="label-scheme"><strong>🎯 Qiymətləndirmə sistemi:</strong></label>
@@ -105,7 +104,7 @@
       <div class="tips" id="tipsBox" aria-live="polite"></div>
     </section>
 
-    <!-- Chart & History -->
+   
     <section class="card">
       <h2 id="history-title">📈 Nəticə tarixi</h2>
       <canvas id="historyChart" height="120"></canvas>
@@ -116,7 +115,7 @@
       </div>
     </section>
 
-    <!-- Exam Countdown -->
+    
     <section class="card">
       <h2 id="exam-title">⏳ İmtahana geri sayım</h2>
       <div class="row">
@@ -126,7 +125,7 @@
       <div id="countdown" class="countdown">—</div>
     </section>
 
-    <!-- Built-in Calculator (your original idea, kept) -->
+    
     <section class="card">
       <h2>🧮 Kalkulyator</h2>
       <input type="text" id="resultCalc" readonly />
