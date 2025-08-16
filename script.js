@@ -1,8 +1,3 @@
-/* ===========================
-   script.js — Full final JS
-   =========================== */
-
-/* --------- Utilities --------- */
 const $ = sel => document.querySelector(sel);
 const $$ = sel => Array.from(document.querySelectorAll(sel));
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -12,7 +7,7 @@ const toFixedSmart = (num, d = 3) => {
   return s.replace(/\.?0+$/, '');
 };
 
-/* --------- i18n strings --------- */
+/* i18n strings  */
 const I18N = {
   az: {
     title: "Akademik Qiymət Hesablama",
@@ -74,7 +69,7 @@ const I18N = {
   }
 };
 
-/* --------- App state & elements --------- */
+/*  App state & elements  */
 let currentLang = localStorage.getItem('lang') || 'az';
 const darkToggle = $('#darkToggle');
 
@@ -104,7 +99,7 @@ const yearEl = $('#year');
 let history = JSON.parse(localStorage.getItem('history') || '[]');
 let chart = null;
 
-/* --------- Helpers: translations & UI --------- */
+
 function applyLang(lang) {
   currentLang = lang;
   const t = I18N[lang] || I18N.az;
@@ -131,10 +126,10 @@ $$('.chip[data-lang]').forEach(btn => {
 });
 applyLang(currentLang);
 
-/* Footer year */
+
 yearEl.textContent = new Date().getFullYear();
 
-/* Dark mode (left intact) */
+/* Dark mode */
 if (localStorage.getItem('dark') === '1') {
   darkToggle.checked = true;
   document.documentElement.classList.add('dark');
@@ -144,7 +139,7 @@ darkToggle.addEventListener('change', () => {
   localStorage.setItem('dark', darkToggle.checked ? '1' : '0');
 });
 
-/* --------- Weight sliders handling --------- */
+
 function updateWeightLabels() {
   kqsWeightVal.textContent = kqsWeight.value;
   const comp = 100 - Number(kqsWeight.value);
@@ -163,7 +158,7 @@ schemeSelect.addEventListener('change', () => {
   computeAndDisplay();
 });
 
-/* --------- KQS/BSQ label adjustment (dynamic text) --------- */
+
 function updateKQSBSQLabels() {
   const t = I18N[currentLang] || I18N.az;
   if (schemeSelect.value === 'az' || schemeSelect.value === 'custom') {
@@ -171,7 +166,7 @@ function updateKQSBSQLabels() {
     $('#label-bsq').innerHTML = `<strong>${t.bsq}</strong>`;
     $('#bsq').parentElement.style.display = 'block';
   } else {
-    // For US, UK, ECTS — change the wording to be generic for those systems
+ 
     if (currentLang === 'az') {
       $('#label-ksq').innerHTML = `<strong>📊 Qiymətlər '%' (vergüllə ayırın):</strong>`;
       $('#label-bsq').innerHTML = `<strong>📝 Əlavə imtahan / Final (əgər varsa):</strong>`;
@@ -183,7 +178,7 @@ function updateKQSBSQLabels() {
   }
 }
 
-/* --------- Parsing KQS --------- */
+
 function parseKQS(input) {
   if (!input) return [];
   return input.split(',')
@@ -191,7 +186,7 @@ function parseKQS(input) {
     .filter(n => !Number.isNaN(n));
 }
 
-/* --------- Core Calculations --------- */
+
 function calcAZ(ksqArray, bsq) {
   const kAvg = ksqArray.length ? (ksqArray.reduce((a, b) => a + b, 0) / ksqArray.length) : 0;
   const b = Number.isFinite(bsq) ? bsq : 0;
@@ -208,9 +203,8 @@ function calcCustom(ksqArray, bsq, kWeightPercent) {
   return { kAvg, final };
 }
 
-/* --------- Converters --------- */
 function toUSGPA(score) {
-  // Using common US mapping (fine-grained), return exact GPA decimal
+
   let grade, gpa;
   if (score >= 93) { grade = 'A'; gpa = 4.0; }
   else if (score >= 90) { grade = 'A-'; gpa = 3.7; }
@@ -243,7 +237,7 @@ function toECTS(final) {
   return { grade: 'F' };
 }
 
-/* --------- Chart & history --------- */
+
 function initChart() {
   const canvas = document.getElementById('historyChart');
   if (!canvas) return;
@@ -277,7 +271,7 @@ function updateChart() {
   chart.update();
 }
 
-/* --------- Result display & compute --------- */
+
 function showTips(kAvg, bsq, final) {
   const t = I18N[currentLang] || I18N.az;
   let msg = '';
@@ -291,7 +285,7 @@ function computeAndDisplay() {
   const t = I18N[currentLang] || I18N.az;
   const ksqArr = parseKQS(ksqInput.value || '');
 
-  // For AZ/custom we require at least one KQS
+
   if ((schemeSelect.value === 'az' || schemeSelect.value === 'custom') && ksqArr.length === 0) {
     resultEl.textContent = '—';
     convertedEl.textContent = '';
@@ -302,17 +296,14 @@ function computeAndDisplay() {
   const bsqRaw = bsqInput.value;
   const bsq = (bsqRaw === '' || bsqRaw === null) ? NaN : parseFloat(bsqRaw);
 
-  // Determine base result depending on scheme:
-  // - az -> 40/60 weighting
-  // - custom -> user weighting
-  // - us/uk/ects -> simple average of all provided scores (ksq list + bsq if present)
+
   let base = { kAvg: 0, final: 0 };
   if (schemeSelect.value === 'az') {
     base = calcAZ(ksqArr, bsq);
   } else if (schemeSelect.value === 'custom') {
     base = calcCustom(ksqArr, bsq, Number(kqsWeight.value));
   } else {
-    // GPA/UK/ECTS: average all numeric inputs (if none -> prompt)
+
     const allScores = [];
     if (ksqArr.length) allScores.push(...ksqArr);
     if (Number.isFinite(bsq)) allScores.push(bsq);
@@ -329,13 +320,12 @@ function computeAndDisplay() {
   const finalNum = Number(toFixedSmart(base.final, 3));
   resultEl.textContent = toFixedSmart(finalNum, 3);
 
-  // Converted display per scheme
   let convertText = '';
   if (schemeSelect.value === 'az' || schemeSelect.value === 'custom') {
     convertText = `AZ: ${toFixedSmart(finalNum, 2)}/100`;
   } else if (schemeSelect.value === 'us') {
     const u = toUSGPA(finalNum);
-    // exact GPA decimal shown with two decimals
+   
     convertText = `US: ${u.grade} · GPA ${u.gpa.toFixed(2)} · ${toFixedSmart(finalNum, 2)}/100`;
   } else if (schemeSelect.value === 'uk') {
     const u = toUKClass(finalNum);
@@ -346,7 +336,6 @@ function computeAndDisplay() {
   }
   convertedEl.textContent = convertText;
 
-  // Tips only meaningful for AZ/custom (use base.kAvg and bsq)
   if (schemeSelect.value === 'az' || schemeSelect.value === 'custom') {
     showTips(base.kAvg, Number.isFinite(bsq) ? bsq : 0, finalNum);
   } else {
@@ -356,7 +345,7 @@ function computeAndDisplay() {
   return finalNum;
 }
 
-/* --------- Save / Clear (fixed variable names) --------- */
+
 function saveResult() {
   const now = new Date().toLocaleDateString();
   const ksqArr = parseKQS(ksqInput.value || '');
@@ -365,7 +354,7 @@ function saveResult() {
   const final = computeAndDisplay();
   if (final === null) return;
 
-  // compute kAvg properly
+
   const kAvg = ksqArr.length ? (ksqArr.reduce((a, b) => a + b, 0) / ksqArr.length) : 0;
 
   history.push({
@@ -387,12 +376,12 @@ function clearHistory() {
   tipsBox.textContent = I18N[currentLang].cleared;
 }
 
-/* --------- Event listeners --------- */
+
 btnCalc.addEventListener('click', computeAndDisplay);
 btnSave.addEventListener('click', saveResult);
 btnClear.addEventListener('click', clearHistory);
 
-/* Export CSV (keeps your previous behaviour) */
+
 if (btnCSV) {
   btnCSV.addEventListener('click', () => {
     const t = I18N[currentLang] || I18N.az;
@@ -409,7 +398,7 @@ if (btnCSV) {
   });
 }
 
-/* --------- PDF Export (keeps your previous behaviour) --------- */
+
 if (btnPDF) {
   btnPDF.addEventListener('click', async () => {
     const t = I18N[currentLang] || I18N.az;
@@ -438,13 +427,12 @@ if (btnPDF) {
   });
 }
 
-/* --------- Share button (keeps your previous behaviour) --------- */
 if (btnShare) {
   btnShare.addEventListener('click', async () => {
     const t = I18N[currentLang] || I18N.az;
     const text = `${t.shareText} ${resultEl.textContent} (${convertedEl.textContent})`;
     if (navigator.share) {
-      try { await navigator.share({ text }); } catch (e) { /* ignore */ }
+      try { await navigator.share({ text }); } catch (e) { /*  */ }
     } else if (navigator.clipboard) {
       try {
         await navigator.clipboard.writeText(text);
@@ -454,7 +442,7 @@ if (btnShare) {
   });
 }
 
-/* --------- Exam countdown (left intact) --------- */
+
 let countdownTimer = null;
 $('#btn-countdown').addEventListener('click', () => {
   const dateStr = $('#examDate').value;
@@ -478,7 +466,7 @@ $('#btn-countdown').addEventListener('click', () => {
   }, 1000);
 });
 
-/* --------- Embedded calc logic (safe eval-like) --------- */
+
 const resultCalc = $('#resultCalc');
 $$('.horizontal-buttons button').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -500,19 +488,19 @@ $$('.horizontal-buttons button').forEach(btn => {
   });
 });
 
-/* --------- Recompute triggers (updates conversions immediately) --------- */
+
 kqsWeight.addEventListener('change', computeAndDisplay);
 schemeSelect.addEventListener('change', computeAndDisplay);
 ksqInput.addEventListener('input', computeAndDisplay);
 bsqInput.addEventListener('input', computeAndDisplay);
 
-/* --------- Init on load --------- */
+
 document.addEventListener('DOMContentLoaded', () => {
   updateKQSBSQLabels();
   computeAndDisplay();
   initChart();
-  // attempt to register service worker (HTML already attempts; this is a safety fallback)
+ 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker?.register('./sw.js').catch(() => { /* ignore */ });
+    navigator.serviceWorker?.register('./sw.js').catch(() => { /*  */ });
   }
 });
