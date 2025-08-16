@@ -1,4 +1,4 @@
-/* ====== Theme Variables ====== */
+
 :root{
   --bg: linear-gradient(to right, #007bff, #6610f2);
   --card: #ffffff;
@@ -20,7 +20,7 @@
   --glass: rgba(255,255,255,0.06);
 }
 
-/* ====== Base ====== */
+
 html, body {
   margin:0; padding:0;
   font-family: Arial, sans-serif;
@@ -32,7 +32,7 @@ body{
   background-attachment: fixed;
 }
 
-/* ====== Topbar ====== */
+
 .topbar{
   display:flex; justify-content:space-between; align-items:center;
   padding: 12px 16px; color:#fff;
@@ -45,7 +45,7 @@ body{
   border:2px solid #000; padding:4px 8px; border-radius:8px; font-weight:bold; color:#fff;
 }
 
-/* ====== Controls ====== */
+
 .controls{display:flex; align-items:center; gap:12px;}
 .chip{
   border:2px solid var(--border);
@@ -64,10 +64,10 @@ body{
 .switch input:checked + .slider{background:#333}
 .switch input:checked + .slider:before{transform:translateX(20px)}
 
-/* ====== Translate widget (subtle) ====== */
+
 .translate-widget{max-width:980px; margin:0 auto 8px; text-align:right; opacity:.6}
 
-/* ====== Main layout ====== */
+
 .container{
   max-width: 980px; margin: 12px auto 40px; padding: 0 12px;
 }
@@ -82,7 +82,7 @@ body{
   animation: fadeIn .6s ease;
 }
 
-/* ====== Inputs & buttons ====== */
+
 label{font-weight:bold; display:block; margin:8px 0 6px}
 .input-field, select, input[type="date"]{
   width:100%; padding:10px; font-size:16px; border-radius:8px;
@@ -98,7 +98,7 @@ button:active{ transform: scale(.98) }
 .secondary{ background:#2b2727; color:#fff }
 .ghost{ background:transparent; color:var(--text); border-style:dashed }
 
-/* ====== Result ====== */
+
 .result-box{
   font-size:20px; font-weight:bold; color: var(--text); display:inline-block; padding:8px; margin:0;
   border:4px solid var(--border); border-radius:8px; background: rgba(0,0,0,0.06);
@@ -110,20 +110,20 @@ button:active{ transform: scale(.98) }
 .converted{margin-top:8px; font-size:14px; color:var(--muted)}
 .result-line{display:flex; flex-direction:column; gap:6px}
 
-/* ====== Row & weights ====== */
+
 .row{display:grid; grid-template-columns: 1fr; gap:12px}
 .scheme{display:flex; flex-direction:column; gap:6px}
 .weights{display:flex; flex-direction:column; gap:6px}
 .hidden{display:none}
 #weight-note{color:var(--muted)}
 
-/* ====== Tips ====== */
+
 .tips{margin-top:10px; background: rgba(0,0,0,0.06); border-left:6px solid var(--primary); padding:10px; border-radius:8px}
 
-/* ====== Chart ====== */
+
 canvas{background:#fff; border-radius:8px; border:2px solid var(--border)}
 
-/* ====== Calculator ====== */
+
 .horizontal-buttons{
   display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; margin-top:10px;
 }
@@ -137,16 +137,16 @@ canvas{background:#fff; border-radius:8px; border:2px solid var(--border)}
   border:3px solid var(--border); background:#fff; color:#000;
 }
 
-/* ====== Footer ====== */
+
 .footer{color:#fff; text-align:center; padding:18px 0}
 
-/* ====== Anim ====== */
+
 @keyframes fadeIn{
   from{opacity:0; transform:translateY(-6px)}
   to{opacity:1; transform:translateY(0)}
 }
 
-/* ====== Mobile ====== */
+
 @media (max-width: 720px){
   .row{grid-template-columns: 1fr}
 }
