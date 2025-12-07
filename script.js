@@ -124,9 +124,11 @@ function applyLang(lang) {
   $('#btn-csv').textContent = t.btnCSV;
   const calcBoxTitleEl = $('#calc-box-title');
   if (calcBoxTitleEl) calcBoxTitleEl.textContent = "🧮 " + t.calcBoxTitle; 
-
   $('#btn-share').textContent = t.btnShare;
+  
   localStorage.setItem('lang', lang);
+
+  computeAndDisplay();
 }
 $$('.chip[data-lang]').forEach(btn => {
   btn.addEventListener('click', () => applyLang(btn.dataset.lang));
