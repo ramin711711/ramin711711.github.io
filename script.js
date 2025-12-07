@@ -122,8 +122,8 @@ function applyLang(lang) {
   $('#btn-clear').textContent = t.btnClear;
   $('#btn-pdf').textContent = t.btnPDF;
   $('#btn-csv').textContent = t.btnCSV;
-  $('#count-start').text("🕒 " + langData.countStartBtn);
-  $('#calc-box-title').text("🧮 " + langData.calcBoxTitle);
+  $('#count-start').textContent = "🕒 " + t.countStartBtn;
+  $('#calc-box-title').textContent = "🧮 " + t.calcBoxTitle;
   $('#btn-share').textContent = t.btnShare;
   localStorage.setItem('lang', lang);
 }
