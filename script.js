@@ -7,7 +7,7 @@ const toFixedSmart = (num, d = 3) => {
   return s.replace(/\.?0+$/, '');
 };
 
-/* i18n strings  */
+
 const I18N = {
   az: {
     title: "Akademik Qiymət Hesablama",
@@ -99,7 +99,7 @@ const tipsBox = $('#tipsBox');
 
 const yearEl = $('#year');
 
-/* Chart / history */
+
 let history = JSON.parse(localStorage.getItem('history') || '[]');
 let chart = null;
 
@@ -125,6 +125,7 @@ function applyLang(lang) {
   const calcBoxTitleEl = $('#calc-box-title');
   if (calcBoxTitleEl) calcBoxTitleEl.textContent = "🧮 " + t.calcBoxTitle; 
   $('#btn-share').textContent = t.btnShare;
+  $('#btn-countdown').textContent = t.countStartBtn;
   
   localStorage.setItem('lang', lang);
 
@@ -138,7 +139,7 @@ applyLang(currentLang);
 
 yearEl.textContent = new Date().getFullYear();
 
-/* Dark mode */
+
 if (localStorage.getItem('dark') === '1') {
   darkToggle.checked = true;
   document.documentElement.classList.add('dark');
