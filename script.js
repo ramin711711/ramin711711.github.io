@@ -36,6 +36,8 @@ const I18N = {
     days: "gün",
     pdfTitle: "Akademik Hesabat",
     shareText: "Mənim akademik nəticəm:",
+    countStartBtn: "Başlat",
+    calcBoxTitle: "Kalkulyator",
     csvHeader: "Tarix,KQS Orta,BSQ,Nəticə,Sxem"
   },
   en: {
@@ -65,6 +67,8 @@ const I18N = {
     days: "days",
     pdfTitle: "Academic Report",
     shareText: "My academic result:",
+    countStartBtn: "Start",
+    calcBoxTitle: "Calculator",
     csvHeader: "Date,KQS Avg,BSQ,Final,Scheme"
   }
 };
@@ -118,6 +122,8 @@ function applyLang(lang) {
   $('#btn-clear').textContent = t.btnClear;
   $('#btn-pdf').textContent = t.btnPDF;
   $('#btn-csv').textContent = t.btnCSV;
+  $('#count-start').text("🕒 " + langData.countStartBtn);
+  $('#calc-box-title').text("🧮 " + langData.calcBoxTitle);
   $('#btn-share').textContent = t.btnShare;
   localStorage.setItem('lang', lang);
 }
