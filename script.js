@@ -26,7 +26,7 @@ const I18N = {
     exam: "⏳ İmtahana geri sayım",
     azBadge: "AZ, US, EU, GB",
     weightNote: "AZ default 40/60 saxlanılıb. Custom seçsən, sürüşdür.",
-    needKQS: "Ən azı bir KQS qiyməti daxil edin.",
+    needKQS: "Ən azı bir KSQ qiyməti daxil edin.",
     saved: "Nəticə yadda saxlandı.",
     cleared: "Tarix təmizləndi.",
     tipHigh: "Möhtəşəm! Sabit performans üçün həftəlik planını qoruyub saxla.",
@@ -69,7 +69,7 @@ const I18N = {
     shareText: "My academic result:",
     countStartBtn: "Start",
     calcBoxTitle: "Calculator",
-    csvHeader: "Date,KQS Avg,BSQ,Final,Scheme"
+    csvHeader: "Date,KSQ Avg,BSQ,Final,Scheme"
   }
 };
 
